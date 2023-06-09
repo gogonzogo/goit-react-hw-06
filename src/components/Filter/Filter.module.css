@@ -1,0 +1,12 @@
+.filterContainer {
+  margin: 10px 0 20px 0;
+}
+
+.filterTitle {
+  font-weight: 600;
+}
+
+.filterInput {
+  padding: 5px;
+}
+

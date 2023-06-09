@@ -1,0 +1,28 @@
+.contactsListContainer {
+  margin-top: 20px;
+}
+
+.contactsList {
+  list-style: none;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+}
+
+.contactItem:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.contactItem:hover {
+  background-color: lightgray;
+}
+
+.contactItemNumer {
+  margin-right: 10px;
+}
+
+.contactItemDeleteBtn {
+  margin-left: auto;
+}
