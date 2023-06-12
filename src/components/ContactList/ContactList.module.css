@@ -24,6 +24,16 @@
   margin-right: 10px;
 }
 
-.contactItemDeleteBtn {
+.contactItemBtn {
   margin-left: auto;
+  padding: 1px;
+}
+
+.contactsTable {
+  border-spacing: 10px;
+}
+
+.editableContact {
+  border: 1px solid black;
+
 }

@@ -34,11 +34,29 @@ export const contactsReducer = createSlice({
       }
       state.contacts.push(action.payload);
     },
+    editContact: (state, action) => {
+      console.log(action.payload);
+      const contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
+      const { id, name, number } = action.payload;
+
+      const existingContact = contacts.find(
+        contact =>
+          contact.name.toLowerCase() === name.toLowerCase() ||
+          contact.number === number
+      );
+      if (existingContact) {
+        alert(`${name} or ${number} is already in contacts`);
+        return;
+      }
+      const contact = state.contacts.find(contact => contact.id === id);
+      contact.name = name;
+      contact.number = number;
+    },
     deleteContact: (state, action) => {
       state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
     }
   }
 })
 
-export const { sortContacts, filterContacts, addContact, deleteContact, } = contactsReducer.actions;
+export const { sortContacts, filterContacts, addContact, editContact, deleteContact, } = contactsReducer.actions;
 export default contactsReducer.reducer;
