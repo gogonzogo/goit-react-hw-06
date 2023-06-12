@@ -35,7 +35,6 @@ export const contactsReducer = createSlice({
       state.contacts.push(action.payload);
     },
     editContact: (state, action) => {
-      console.log(action.payload);
       const contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
       const { id, name, number } = action.payload;
 
