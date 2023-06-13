@@ -3,8 +3,9 @@ import ContentEditable from 'react-contenteditable';
 import sanitize from 'sanitize-html';
 import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { editContact, deleteContact } from 'redux/contactsSlice';
+import { editContact } from 'redux/contactsSlice';
 import { sortContactsList, filterContactsList } from 'services/contactListFunc';
+import { Buttons } from 'components/Buttons/Buttons';
 
 export const ContactList = () => {
   const [editableContactId, setEditableContactId] = useState(null);
@@ -37,7 +38,7 @@ export const ContactList = () => {
   const handleContactChange = (e, id) => {
     const value = e.target.value;
     const dataset = e.currentTarget.dataset.value;
-     const sanitizedValue = sanitize(value);
+    const sanitizedValue = sanitize(value);
     editedContactsRef.current[id][dataset] = sanitizedValue;
   };
 
@@ -89,37 +90,13 @@ export const ContactList = () => {
                     )}
                   </td>
                   <td>
-                    {editableContactId === contact.id ? (
-                      <>
-                        <button
-                          className={css.contactItemBtn}
-                          onClick={() => handleSaveClick(contact.id)}
-                        >
-                          Save
-                        </button>
-                        <button
-                          className={css.contactItemBtn}
-                          onClick={handleCancelClick}
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          className={css.contactItemBtn}
-                          onClick={() => handleEditClick(contact.id)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className={css.contactItemBtn}
-                          onClick={() => dispatch(deleteContact(contact.id))}
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
+                    <Buttons
+                      contactId={contact.id}
+                      editableContactId={editableContactId}
+                      handleEditClick={handleEditClick}
+                      handleCancelClick={handleCancelClick}
+                      handleSaveClick={handleSaveClick}
+                    />
                   </td>
                 </tr>
               ))}
